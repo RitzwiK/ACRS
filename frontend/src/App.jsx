@@ -5,7 +5,7 @@ import * as d3 from "d3";
 
 const TC = createContext();
 const ut = () => useContext(TC);
-const API = "";
+const API = import.meta.env.VITE_API_URL || "";
 
 const TH = {
   light: { bg:"#FAFAF9",ba:"#F0EFEB",sf:"rgba(255,255,255,0.7)",sl:"#FFF",tx:"#1A1A19",t2:"#70706B",t3:"#A3A39E",bd:"rgba(0,0,0,0.06)",ac:"#2563EB",as:"rgba(37,99,235,0.08)",rd:"#DC2626",or:"#EA580C",gn:"#16A34A",pu:"#7C3AED",tl:"#0891B2",yl:"#CA8A04",cd:"rgba(255,255,255,0.75)",co:"#18181B",cf:"#E4E4E7",hr:"radial-gradient(ellipse 70% 50% at 50% 0%,rgba(37,99,235,0.04) 0%,transparent 60%)",sh:"0 1px 3px rgba(0,0,0,0.04),0 0 0 1px rgba(0,0,0,0.03)",shH:"0 8px 30px rgba(0,0,0,0.07),0 0 0 1px rgba(0,0,0,0.05)",gl:"rgba(255,255,255,0.55)" },

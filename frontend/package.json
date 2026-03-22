@@ -18,5 +18,13 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.5.2",
     "vite": "^6.3.5"
+  },
+  "overrides": {
+    "lucide-react": {
+      "react": "$react"
+    },
+    "recharts": {
+      "react": "$react"
+    }
   }
 }

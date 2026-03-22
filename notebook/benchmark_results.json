@@ -1,0 +1,1157 @@
+{
+  "benchmark_info": {
+    "total_samples": 20,
+    "total_ground_truth_issues": 18,
+    "clean_samples": 7,
+    "defective_samples": 13,
+    "total_time_seconds": 1.83,
+    "avg_latency_ms": 91.3
+  },
+  "overall_metrics": {
+    "micro_precision": 0.75,
+    "micro_recall": 0.9,
+    "micro_f1": 0.8182,
+    "macro_precision": 0.8,
+    "macro_recall": 0.9018,
+    "macro_f1": 0.8478
+  },
+  "per_category_metrics": {
+    "Bug-Prone": {
+      "precision": 0.5,
+      "recall": 0.75,
+      "f1": 0.6,
+      "accuracy": 0.8,
+      "tp": 3,
+      "fp": 3,
+      "fn": 1,
+      "tn": 13,
+      "support": 4
+    },
+    "Code Smell": {
+      "precision": 0.7,
+      "recall": 1.0,
+      "f1": 0.8235,
+      "accuracy": 0.85,
+      "tp": 7,
+      "fp": 3,
+      "fn": 0,
+      "tn": 10,
+      "support": 7
+    },
+    "Design Inefficiency": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 18,
+      "support": 2
+    },
+    "Clean": {
+      "precision": 1.0,
+      "recall": 0.8571,
+      "f1": 0.9231,
+      "accuracy": 0.95,
+      "tp": 6,
+      "fp": 0,
+      "fn": 1,
+      "tn": 13,
+      "support": 7
+    }
+  },
+  "per_pattern_metrics": {
+    "missing_return": {
+      "precision": 0.5,
+      "recall": 0.75,
+      "f1": 0.6,
+      "tp": 3,
+      "fp": 3,
+      "fn": 1,
+      "support": 4
+    },
+    "unused_variable": {
+      "precision": 0.4286,
+      "recall": 1.0,
+      "f1": 0.6,
+      "tp": 3,
+      "fp": 4,
+      "fn": 0,
+      "support": 3
+    },
+    "high_complexity": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+    },
+    "deep_nesting": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571,
+      "tp": 3,
+      "fp": 1,
+      "fn": 0,
+      "support": 3
+    },
+    "long_parameter_list": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "support": 4
+    },
+    "god_function": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Bug-Prone",
+      "Code Smell",
+      "Design Inefficiency",
+      "Clean"
+    ],
+    "matrix": [
+      [
+        3,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        5,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        6
+      ]
+    ]
+  },
+  "confidence_calibration": [
+    {
+      "confidence_bin": 0.8,
+      "accuracy": 0.7576,
+      "count": 33
+    }
+  ],
+  "graph_analysis": [
+    {
+      "sample_id": "bug_missing_return_01",
+      "num_nodes": 25,
+      "num_edges": 28,
+      "ast_edges": 24,
+      "cfg_edges": 2,
+      "dfg_edges": 3,
+      "gt_count": 1,
+      "pred_count": 2,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 1
+    },
+    {
+      "sample_id": "bug_missing_return_02",
+      "num_nodes": 34,
+      "num_edges": 36,
+      "ast_edges": 33,
+      "cfg_edges": 5,
+      "dfg_edges": 3,
+      "gt_count": 1,
+      "pred_count": 3,
+      "correct": 0,
+      "missed": 1,
+      "false_alarms": 3
+    },
+    {
+      "sample_id": "smell_high_complexity_01",
+      "num_nodes": 151,
+      "num_edges": 183,
+      "ast_edges": 150,
+      "cfg_edges": 23,
+      "dfg_edges": 29,
+      "gt_count": 1,
+      "pred_count": 7,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 6
+    },
+    {
+      "sample_id": "smell_deep_nesting_01",
+      "num_nodes": 70,
+      "num_edges": 82,
+      "ast_edges": 69,
+      "cfg_edges": 7,
+      "dfg_edges": 12,
+      "gt_count": 2,
+      "pred_count": 3,
+      "correct": 2,
+      "missed": 0,
+      "false_alarms": 2
+    },
+    {
+      "sample_id": "smell_long_params_01",
+      "num_nodes": 74,
+      "num_edges": 95,
+      "ast_edges": 73,
+      "cfg_edges": 8,
+      "dfg_edges": 15,
+      "gt_count": 1,
+      "pred_count": 1,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_simple_function_01",
+      "num_nodes": 12,
+      "num_edges": 13,
+      "ast_edges": 11,
+      "cfg_edges": 0,
+      "dfg_edges": 2,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_well_structured_01",
+      "num_nodes": 51,
+      "num_edges": 59,
+      "ast_edges": 50,
+      "cfg_edges": 7,
+      "dfg_edges": 5,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_class_01",
+      "num_nodes": 40,
+      "num_edges": 46,
+      "ast_edges": 39,
+      "cfg_edges": 2,
+      "dfg_edges": 5,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "design_god_function_01",
+      "num_nodes": 471,
+      "num_edges": 588,
+      "ast_edges": 470,
+      "cfg_edges": 60,
+      "dfg_edges": 60,
+      "gt_count": 1,
+      "pred_count": 2,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 1
+    },
+    {
+      "sample_id": "smell_unused_var_01",
+      "num_nodes": 33,
+      "num_edges": 40,
+      "ast_edges": 32,
+      "cfg_edges": 3,
+      "dfg_edges": 5,
+      "gt_count": 2,
+      "pred_count": 2,
+      "correct": 2,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "bug_missing_return_03",
+      "num_nodes": 72,
+      "num_edges": 84,
+      "ast_edges": 71,
+      "cfg_edges": 7,
+      "dfg_edges": 9,
+      "gt_count": 1,
+      "pred_count": 1,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "smell_complexity_02",
+      "num_nodes": 107,
+      "num_edges": 126,
+      "ast_edges": 106,
+      "cfg_edges": 17,
+      "dfg_edges": 19,
+      "gt_count": 2,
+      "pred_count": 1,
+      "correct": 2,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_decorator_01",
+      "num_nodes": 52,
+      "num_edges": 60,
+      "ast_edges": 51,
+      "cfg_edges": 14,
+      "dfg_edges": 6,
+      "gt_count": 0,
+      "pred_count": 1,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 1
+    },
+    {
+      "sample_id": "bug_missing_return_04",
+      "num_nodes": 43,
+      "num_edges": 52,
+      "ast_edges": 42,
+      "cfg_edges": 6,
+      "dfg_edges": 7,
+      "gt_count": 1,
+      "pred_count": 1,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_list_comprehension_01",
+      "num_nodes": 40,
+      "num_edges": 50,
+      "ast_edges": 39,
+      "cfg_edges": 2,
+      "dfg_edges": 9,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "smell_nesting_02",
+      "num_nodes": 59,
+      "num_edges": 66,
+      "ast_edges": 58,
+      "cfg_edges": 8,
+      "dfg_edges": 7,
+      "gt_count": 1,
+      "pred_count": 3,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 2
+    },
+    {
+      "sample_id": "design_god_function_02",
+      "num_nodes": 606,
+      "num_edges": 725,
+      "ast_edges": 605,
+      "cfg_edges": 60,
+      "dfg_edges": 60,
+      "gt_count": 1,
+      "pred_count": 1,
+      "correct": 1,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "clean_context_manager_01",
+      "num_nodes": 60,
+      "num_edges": 70,
+      "ast_edges": 59,
+      "cfg_edges": 4,
+      "dfg_edges": 8,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    },
+    {
+      "sample_id": "mixed_issues_01",
+      "num_nodes": 86,
+      "num_edges": 100,
+      "ast_edges": 85,
+      "cfg_edges": 11,
+      "dfg_edges": 12,
+      "gt_count": 3,
+      "pred_count": 5,
+      "correct": 3,
+      "missed": 0,
+      "false_alarms": 4
+    },
+    {
+      "sample_id": "clean_functional_01",
+      "num_nodes": 42,
+      "num_edges": 50,
+      "ast_edges": 41,
+      "cfg_edges": 2,
+      "dfg_edges": 7,
+      "gt_count": 0,
+      "pred_count": 0,
+      "correct": 0,
+      "missed": 0,
+      "false_alarms": 0
+    }
+  ],
+  "per_sample_results": [
+    {
+      "id": "bug_missing_return_01",
+      "description": "Function with conditional assignment but no return statement",
+      "predictions": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "critical",
+          "line_start": 2,
+          "line_end": 5,
+          "description": "Function 'divide' has no return statement"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7678498584476042,
+          "severity": "warning",
+          "line_start": 4,
+          "line_end": 4,
+          "description": "Variable 'result' is defined but may not be used"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "line_start": 2,
+          "line_end": 5
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 1,
+      "graph_nodes": 25,
+      "graph_edges": 28,
+      "ast_edges": 24,
+      "cfg_edges": 2,
+      "dfg_edges": 3,
+      "latency_ms": 18.5
+    },
+    {
+      "id": "bug_missing_return_02",
+      "description": "Multi-branch function without return or default assignment",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7689522005558016,
+          "severity": "warning",
+          "line_start": 4,
+          "line_end": 4,
+          "description": "Variable 'msg' is defined but may not be used"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7695457975016661,
+          "severity": "warning",
+          "line_start": 6,
+          "line_end": 6,
+          "description": "Variable 'msg' is defined but may not be used"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7701417797461257,
+          "severity": "warning",
+          "line_start": 8,
+          "line_end": 8,
+          "description": "Variable 'msg' is defined but may not be used"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "line_start": 2,
+          "line_end": 8
+        }
+      ],
+      "correct_detections": 0,
+      "missed_detections": 1,
+      "false_alarms": 3,
+      "graph_nodes": 34,
+      "graph_edges": 36,
+      "ast_edges": 33,
+      "cfg_edges": 5,
+      "dfg_edges": 3,
+      "latency_ms": 15.3
+    },
+    {
+      "id": "smell_high_complexity_01",
+      "description": "Function with cyclomatic complexity >10",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "high_complexity",
+          "confidence": 0.76871753207564,
+          "severity": "warning",
+          "line_start": 2,
+          "line_end": 27,
+          "description": "Function 'process' has cyclomatic complexity 16"
+        },
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "warning",
+          "line_start": 2,
+          "line_end": 27,
+          "description": "Function 'process' may not return on all code paths"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7839125871588342,
+          "severity": "warning",
+          "line_start": 8,
+          "line_end": 11,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7839125871588342,
+          "severity": "warning",
+          "line_start": 13,
+          "line_end": 14,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7839125871588342,
+          "severity": "warning",
+          "line_start": 21,
+          "line_end": 22,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7879912288834655,
+          "severity": "warning",
+          "line_start": 24,
+          "line_end": 26,
+          "description": "Deeply nested For at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7878670005227075,
+          "severity": "warning",
+          "line_start": 25,
+          "line_end": 26,
+          "description": "Deeply nested If at depth 7"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "high_complexity",
+          "line_start": 2,
+          "line_end": 27
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 6,
+      "graph_nodes": 151,
+      "graph_edges": 183,
+      "ast_edges": 150,
+      "cfg_edges": 23,
+      "dfg_edges": 29,
+      "latency_ms": 84.2
+    },
+    {
+      "id": "smell_deep_nesting_01",
+      "description": "Deeply nested conditionals with too many parameters",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "confidence": 0.76871753207564,
+          "severity": "info",
+          "line_start": 2,
+          "line_end": 10,
+          "description": "Function 'deeply_nested' has 6 parameters"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.78708201235394,
+          "severity": "warning",
+          "line_start": 7,
+          "line_end": 9,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.788799501230151,
+          "severity": "warning",
+          "line_start": 8,
+          "line_end": 9,
+          "description": "Deeply nested If at depth 7"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "line_start": 3,
+          "line_end": 8
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "line_start": 2,
+          "line_end": 9
+        }
+      ],
+      "correct_detections": 2,
+      "missed_detections": 0,
+      "false_alarms": 2,
+      "graph_nodes": 70,
+      "graph_edges": 82,
+      "ast_edges": 69,
+      "cfg_edges": 7,
+      "dfg_edges": 12,
+      "latency_ms": 78.9
+    },
+    {
+      "id": "smell_long_params_01",
+      "description": "Function with 8 parameters",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "confidence": 0.76871753207564,
+          "severity": "info",
+          "line_start": 2,
+          "line_end": 11,
+          "description": "Function 'send_email' has 8 parameters"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "line_start": 2,
+          "line_end": 11
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 74,
+      "graph_edges": 95,
+      "ast_edges": 73,
+      "cfg_edges": 8,
+      "dfg_edges": 15,
+      "latency_ms": 92.9
+    },
+    {
+      "id": "clean_simple_function_01",
+      "description": "Clean simple function with no issues",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 12,
+      "graph_edges": 13,
+      "ast_edges": 11,
+      "cfg_edges": 0,
+      "dfg_edges": 2,
+      "latency_ms": 5.6
+    },
+    {
+      "id": "clean_well_structured_01",
+      "description": "Well-structured validation with early returns",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 51,
+      "graph_edges": 59,
+      "ast_edges": 50,
+      "cfg_edges": 7,
+      "dfg_edges": 5,
+      "latency_ms": 21.4
+    },
+    {
+      "id": "clean_class_01",
+      "description": "Clean class with simple methods",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 40,
+      "graph_edges": 46,
+      "ast_edges": 39,
+      "cfg_edges": 2,
+      "dfg_edges": 5,
+      "latency_ms": 73.1
+    },
+    {
+      "id": "design_god_function_01",
+      "description": "Function with >50 statements indicating too many responsibilities",
+      "predictions": [
+        {
+          "category": "Design Inefficiency",
+          "pattern": "god_function",
+          "confidence": 0.7687175320756401,
+          "severity": "info",
+          "line_start": 1,
+          "line_end": 61,
+          "description": "Function 'do_everything' has 58 statements"
+        },
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "warning",
+          "line_start": 1,
+          "line_end": 61,
+          "description": "Function 'do_everything' may not return on all code paths"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Design Inefficiency",
+          "pattern": "god_function",
+          "line_start": 1,
+          "line_end": 60
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 1,
+      "graph_nodes": 471,
+      "graph_edges": 588,
+      "ast_edges": 470,
+      "cfg_edges": 60,
+      "dfg_edges": 60,
+      "latency_ms": 409.3
+    },
+    {
+      "id": "smell_unused_var_01",
+      "description": "Variables defined but never referenced",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7825378164666924,
+          "severity": "warning",
+          "line_start": 3,
+          "line_end": 3,
+          "description": "Variable 'temp' is defined but may not be used"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7618123234914531,
+          "severity": "warning",
+          "line_start": 4,
+          "line_end": 4,
+          "description": "Variable 'unused' is defined but may not be used"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "line_start": 3,
+          "line_end": 3
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "line_start": 4,
+          "line_end": 4
+        }
+      ],
+      "correct_detections": 2,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 33,
+      "graph_edges": 40,
+      "ast_edges": 32,
+      "cfg_edges": 3,
+      "dfg_edges": 5,
+      "latency_ms": 15.9
+    },
+    {
+      "id": "bug_missing_return_03",
+      "description": "Config parser that never returns the parsed result",
+      "predictions": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "critical",
+          "line_start": 2,
+          "line_end": 10,
+          "description": "Function 'parse_config' has no return statement"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "line_start": 2,
+          "line_end": 10
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 72,
+      "graph_edges": 84,
+      "ast_edges": 71,
+      "cfg_edges": 7,
+      "dfg_edges": 9,
+      "latency_ms": 94.3
+    },
+    {
+      "id": "smell_complexity_02",
+      "description": "Router with high branching complexity",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "high_complexity",
+          "confidence": 0.76871753207564,
+          "severity": "warning",
+          "line_start": 2,
+          "line_end": 23,
+          "description": "Function 'route_request' has cyclomatic complexity 12"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "high_complexity",
+          "line_start": 2,
+          "line_end": 22
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "line_start": 2,
+          "line_end": 22
+        }
+      ],
+      "correct_detections": 2,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 107,
+      "graph_edges": 126,
+      "ast_edges": 106,
+      "cfg_edges": 17,
+      "dfg_edges": 19,
+      "latency_ms": 91.1
+    },
+    {
+      "id": "clean_decorator_01",
+      "description": "Clean retry decorator pattern",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7738788147486017,
+          "severity": "warning",
+          "line_start": 9,
+          "line_end": 10,
+          "description": "Deeply nested If at depth 7"
+        }
+      ],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 1,
+      "graph_nodes": 52,
+      "graph_edges": 60,
+      "ast_edges": 51,
+      "cfg_edges": 14,
+      "dfg_edges": 6,
+      "latency_ms": 83.2
+    },
+    {
+      "id": "bug_missing_return_04",
+      "description": "Finds max but never returns it",
+      "predictions": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "critical",
+          "line_start": 2,
+          "line_end": 8,
+          "description": "Function 'find_max' has no return statement"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "line_start": 2,
+          "line_end": 8
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 43,
+      "graph_edges": 52,
+      "ast_edges": 42,
+      "cfg_edges": 6,
+      "dfg_edges": 7,
+      "latency_ms": 19.6
+    },
+    {
+      "id": "clean_list_comprehension_01",
+      "description": "Clean Pythonic list processing",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 40,
+      "graph_edges": 50,
+      "ast_edges": 39,
+      "cfg_edges": 2,
+      "dfg_edges": 9,
+      "latency_ms": 23.1
+    },
+    {
+      "id": "smell_nesting_02",
+      "description": "Validation with excessive nesting instead of guard clauses",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.78708201235394,
+          "severity": "warning",
+          "line_start": 7,
+          "line_end": 10,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.788799501230151,
+          "severity": "warning",
+          "line_start": 8,
+          "line_end": 10,
+          "description": "Deeply nested If at depth 7"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7901838968966127,
+          "severity": "warning",
+          "line_start": 9,
+          "line_end": 10,
+          "description": "Deeply nested If at depth 8"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "line_start": 3,
+          "line_end": 9
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 2,
+      "graph_nodes": 59,
+      "graph_edges": 66,
+      "ast_edges": 58,
+      "cfg_edges": 8,
+      "dfg_edges": 7,
+      "latency_ms": 62.0
+    },
+    {
+      "id": "design_god_function_02",
+      "description": "Massive initialization function",
+      "predictions": [
+        {
+          "category": "Design Inefficiency",
+          "pattern": "god_function",
+          "confidence": 0.7687175320756401,
+          "severity": "info",
+          "line_start": 1,
+          "line_end": 62,
+          "description": "Function 'initialize_system' has 61 statements"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Design Inefficiency",
+          "pattern": "god_function",
+          "line_start": 1,
+          "line_end": 62
+        }
+      ],
+      "correct_detections": 1,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 606,
+      "graph_edges": 725,
+      "ast_edges": 605,
+      "cfg_edges": 60,
+      "dfg_edges": 60,
+      "latency_ms": 503.3
+    },
+    {
+      "id": "clean_context_manager_01",
+      "description": "Clean context manager implementation",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 60,
+      "graph_edges": 70,
+      "ast_edges": 59,
+      "cfg_edges": 4,
+      "dfg_edges": 8,
+      "latency_ms": 26.5
+    },
+    {
+      "id": "mixed_issues_01",
+      "description": "Multiple issues: long params, deep nesting, unused variable",
+      "predictions": [
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "confidence": 0.76871753207564,
+          "severity": "info",
+          "line_start": 2,
+          "line_end": 14,
+          "description": "Function 'complex_handler' has 6 parameters"
+        },
+        {
+          "category": "Bug-Prone",
+          "pattern": "missing_return",
+          "confidence": 0.76871753207564,
+          "severity": "warning",
+          "line_start": 2,
+          "line_end": 14,
+          "description": "Function 'complex_handler' may not return on all code paths"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.7850112240644325,
+          "severity": "warning",
+          "line_start": 8,
+          "line_end": 11,
+          "description": "Deeply nested If at depth 6"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "confidence": 0.788799501230151,
+          "severity": "warning",
+          "line_start": 9,
+          "line_end": 11,
+          "description": "Deeply nested If at depth 7"
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "confidence": 0.7825378164666924,
+          "severity": "warning",
+          "line_start": 3,
+          "line_end": 3,
+          "description": "Variable 'temp' is defined but may not be used"
+        }
+      ],
+      "ground_truth": [
+        {
+          "category": "Code Smell",
+          "pattern": "long_parameter_list",
+          "line_start": 2,
+          "line_end": 14
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "deep_nesting",
+          "line_start": 5,
+          "line_end": 11
+        },
+        {
+          "category": "Code Smell",
+          "pattern": "unused_variable",
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "correct_detections": 3,
+      "missed_detections": 0,
+      "false_alarms": 4,
+      "graph_nodes": 86,
+      "graph_edges": 100,
+      "ast_edges": 85,
+      "cfg_edges": 11,
+      "dfg_edges": 12,
+      "latency_ms": 90.1
+    },
+    {
+      "id": "clean_functional_01",
+      "description": "Clean functional pipeline",
+      "predictions": [],
+      "ground_truth": [],
+      "correct_detections": 0,
+      "missed_detections": 0,
+      "false_alarms": 0,
+      "graph_nodes": 42,
+      "graph_edges": 50,
+      "ast_edges": 41,
+      "cfg_edges": 2,
+      "dfg_edges": 7,
+      "latency_ms": 18.3
+    }
+  ]
+}

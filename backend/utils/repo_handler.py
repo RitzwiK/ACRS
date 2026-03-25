@@ -22,27 +22,31 @@ class RepoHandler:
 
     def clone_repository(self, repo_url: str, branch: str = 'main') -> Tuple[str, Dict]:
         repo_dir = tempfile.mkdtemp(dir=self.base_dir)
-        try:
-            repo = Repo.clone_from(
-                repo_url, repo_dir,
-                branch=branch,
-                depth=1,
-                single_branch=True,
-                no_checkout=False
-            )
-        except GitCommandError:
+        repo = None
+
+        if not repo_url.endswith('.git'):
+            repo_url = repo_url.rstrip('/') + '.git'
+
+        for attempt_branch in [None, branch, 'master', 'main', 'develop']:
             try:
-                repo = Repo.clone_from(
-                    repo_url, repo_dir,
-                    branch='master',
-                    depth=1,
-                    single_branch=True,
-                    no_checkout=False
-                )
-                branch = 'master'
-            except GitCommandError as e:
                 shutil.rmtree(repo_dir, ignore_errors=True)
-                raise RuntimeError(f"Failed to clone repository: {str(e)}")
+                os.makedirs(repo_dir, exist_ok=True)
+                kwargs = {'depth': 1, 'no_checkout': False}
+                if attempt_branch:
+                    kwargs['branch'] = attempt_branch
+                    kwargs['single_branch'] = True
+                repo = Repo.clone_from(repo_url, repo_dir, **kwargs)
+                if attempt_branch:
+                    branch = attempt_branch
+                else:
+                    branch = str(repo.active_branch)
+                break
+            except GitCommandError:
+                continue
+
+        if repo is None:
+            shutil.rmtree(repo_dir, ignore_errors=True)
+            raise RuntimeError(f"Failed to clone repository: {repo_url}")
 
         commit = repo.head.commit
         repo_info = {

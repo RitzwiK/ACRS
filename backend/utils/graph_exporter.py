@@ -41,6 +41,24 @@ FRAMEWORK_DB = {
     'thread': 'C++ Threading', 'mutex': 'C++ Mutex',
     'boost': 'Boost', 'eigen': 'Eigen', 'opencv2': 'OpenCV',
     'qt': 'Qt', 'gtk': 'GTK',
+    'react': 'React', 'react-dom': 'React DOM', 'next': 'Next.js',
+    'vue': 'Vue.js', 'svelte': 'Svelte', 'angular': 'Angular',
+    'express': 'Express', 'koa': 'Koa', 'fastify': 'Fastify', 'hono': 'Hono',
+    'axios': 'Axios', 'node-fetch': 'node-fetch',
+    'tailwindcss': 'Tailwind CSS', 'styled-components': 'styled-components',
+    'emotion': 'Emotion', 'sass': 'Sass',
+    'prisma': 'Prisma', 'mongoose': 'Mongoose', 'sequelize': 'Sequelize', 'typeorm': 'TypeORM',
+    'jest': 'Jest', 'vitest': 'Vitest', 'mocha': 'Mocha', 'cypress': 'Cypress',
+    'webpack': 'Webpack', 'vite': 'Vite', 'esbuild': 'esbuild', 'rollup': 'Rollup',
+    'lodash': 'Lodash', 'underscore': 'Underscore', 'ramda': 'Ramda',
+    'moment': 'Moment.js', 'dayjs': 'Day.js', 'date-fns': 'date-fns',
+    'zod': 'Zod', 'yup': 'Yup', 'joi': 'Joi',
+    'redux': 'Redux', 'zustand': 'Zustand', 'mobx': 'MobX', 'jotai': 'Jotai',
+    'trpc': 'tRPC', 'graphql': 'GraphQL', 'apollo': 'Apollo',
+    'socket': 'Socket.IO', 'ws': 'WebSocket',
+    'd3': 'D3.js', 'three': 'Three.js', 'chart': 'Chart.js', 'recharts': 'Recharts',
+    'framer-motion': 'Framer Motion', 'gsap': 'GSAP',
+    'lucide-react': 'Lucide', 'heroicons': 'Heroicons',
 }
 
 CATEGORY_MAP = {
@@ -101,6 +119,28 @@ def detect_imports(source_code: str, language: str) -> Dict:
             root = header.replace('.h', '').split('/')[0]
             imports.append({'module': header, 'line': source_code[:m.start()].count('\n') + 1, 'type': 'include'})
             _classify(root, frameworks, categories)
+
+    elif language in ('JavaScript', 'TypeScript'):
+        for m in re.finditer(r'import\s+(?:\{[^}]+\}|[\w*]+(?:\s*,\s*\{[^}]+\})?)\s+from\s+[\'"]([^\'"]+)[\'"]', source_code):
+            mod = m.group(1)
+            root = mod.split('/')[0].replace('@', '')
+            imports.append({'module': mod, 'line': source_code[:m.start()].count('\n') + 1, 'type': 'import'})
+            _classify(root, frameworks, categories)
+        for m in re.finditer(r'require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)', source_code):
+            mod = m.group(1)
+            root = mod.split('/')[0].replace('@', '')
+            imports.append({'module': mod, 'line': source_code[:m.start()].count('\n') + 1, 'type': 'require'})
+            _classify(root, frameworks, categories)
+
+    elif language == 'HTML':
+        for m in re.finditer(r'<(?:script|link)[^>]*(?:src|href)\s*=\s*[\'"]([^\'"]+)[\'"]', source_code):
+            ref = m.group(1)
+            imports.append({'module': ref, 'line': source_code[:m.start()].count('\n') + 1, 'type': 'reference'})
+
+    elif language == 'CSS':
+        for m in re.finditer(r'@import\s+(?:url\s*\(\s*)?[\'"]([^\'"]+)[\'"]', source_code):
+            ref = m.group(1)
+            imports.append({'module': ref, 'line': source_code[:m.start()].count('\n') + 1, 'type': 'import'})
 
     seen = set()
     unique_fw = []

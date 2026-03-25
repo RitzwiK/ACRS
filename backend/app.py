@@ -14,6 +14,10 @@ from flask_cors import CORS
 from parsers.python_parser import PythonASTParser
 from parsers.java_parser import JavaParser
 from parsers.cpp_parser import CppParser
+from parsers.js_parser import JSParser
+from parsers.html_parser import HTMLParser_
+from parsers.css_parser import CSSParser
+from parsers.json_parser import JSONParser
 from graph.program_graph import ProgramGraphBuilder
 from graph.feature_encoder import FeatureEncoder
 from models.gat_model import GATDefectDetector
@@ -35,6 +39,17 @@ PARSERS = {
     '.cpp': CppParser(),
     '.h': CppParser(),
     '.hpp': CppParser(),
+    '.js': JSParser(),
+    '.jsx': JSParser(),
+    '.ts': JSParser(),
+    '.tsx': JSParser(),
+    '.mjs': JSParser(),
+    '.cjs': JSParser(),
+    '.html': HTMLParser_(),
+    '.htm': HTMLParser_(),
+    '.css': CSSParser(),
+    '.scss': CSSParser(),
+    '.json': JSONParser(),
 }
 
 SUPPORTED_EXTENSIONS = set(PARSERS.keys())
@@ -61,9 +76,9 @@ def serve_frontend():
 def health_check():
     return jsonify({
         'status': 'healthy',
-        'version': '1.0.0',
+        'version': '1.1.0',
         'model': 'GAT-v1',
-        'supported_languages': ['Python', 'Java', 'C', 'C++'],
+        'supported_languages': ['Python', 'Java', 'C', 'C++', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'JSON'],
         'timestamp': datetime.now().isoformat()
     })
 
@@ -240,7 +255,14 @@ def analyze_single_file(file_path, repo_root):
             })
 
     rel_path = str(Path(file_path).relative_to(repo_root))
-    lang_map = {'.py': 'Python', '.java': 'Java', '.c': 'C', '.cpp': 'C++', '.h': 'C', '.hpp': 'C++'}
+    lang_map = {
+        '.py': 'Python', '.java': 'Java', '.c': 'C', '.cpp': 'C++', '.h': 'C', '.hpp': 'C++',
+        '.js': 'JavaScript', '.jsx': 'JavaScript', '.mjs': 'JavaScript', '.cjs': 'JavaScript',
+        '.ts': 'TypeScript', '.tsx': 'TypeScript',
+        '.html': 'HTML', '.htm': 'HTML',
+        '.css': 'CSS', '.scss': 'CSS',
+        '.json': 'JSON',
+    }
     language = lang_map.get(ext, 'Unknown')
 
     import_info = detect_imports(source_code, language)
@@ -305,7 +327,7 @@ if __name__ == '__main__':
     print("  Graph Neural Network-Based Defect Detection")
     print("=" * 60)
     print(f"  Model: GAT with type-aware message passing")
-    print(f"  Languages: Python, Java, C, C++")
+    print(f"  Languages: Python, Java, C/C++, JS/TS, HTML, CSS, JSON")
     print(f"  Edge types: AST, CFG, DFG")
     print("=" * 60)
     app.run(host='0.0.0.0', port=5000, debug=True)

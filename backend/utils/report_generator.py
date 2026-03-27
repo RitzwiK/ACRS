@@ -28,21 +28,16 @@ class ReportGenerator:
             info = summary['severity_distribution'].get('info', 0)
             weighted_issues = crit * 3.0 + warn * 1.5 + info * 0.5
 
-            issue_per_kloc = (weighted_issues / total_lines) * 1000
+            issue_ratio = weighted_issues / (files_analyzed + weighted_issues)
 
-            base = clean_ratio * 100
+            clean_score = clean_ratio * 60.0
+            issue_score = (1.0 - issue_ratio) * 30.0
 
-            if issue_per_kloc <= 2:
-                penalty = issue_per_kloc * 2
-            elif issue_per_kloc <= 10:
-                penalty = 4 + (issue_per_kloc - 2) * 3
-            else:
-                penalty = 28 + (issue_per_kloc - 10) * 1.5
+            avg_complexity = weighted_issues / files_analyzed
+            complexity_score = max(0.0, 10.0 - avg_complexity * 2.0)
 
-            penalty = min(penalty, 60)
-
-            health_score = max(5, base - penalty)
-            health_score = round(min(100, health_score), 1)
+            health_score = round(clean_score + issue_score + complexity_score, 2)
+            health_score = round(max(0.0, min(100.0, health_score)), 2)
 
         if health_score >= 80:
             health_grade = 'A'

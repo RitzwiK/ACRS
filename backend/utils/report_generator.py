@@ -17,13 +17,31 @@ class ReportGenerator:
         if files_analyzed == 0:
             health_score = 100.0
         else:
-            issue_density = total / max(files_analyzed, 1)
-            severity_weight = (
-                summary['severity_distribution'].get('critical', 0) * 3 +
-                summary['severity_distribution'].get('warning', 0) * 1.5 +
-                summary['severity_distribution'].get('info', 0) * 0.5
-            )
-            health_score = max(0, 100 - issue_density * 10 - severity_weight * 2)
+            clean_files = sum(1 for f in files if not f.get('issues'))
+            clean_ratio = clean_files / files_analyzed
+
+            total_lines = sum(f.get('lines', 0) for f in files)
+            total_lines = max(total_lines, 1)
+
+            crit = summary['severity_distribution'].get('critical', 0)
+            warn = summary['severity_distribution'].get('warning', 0)
+            info = summary['severity_distribution'].get('info', 0)
+            weighted_issues = crit * 3.0 + warn * 1.5 + info * 0.5
+
+            issue_per_kloc = (weighted_issues / total_lines) * 1000
+
+            base = clean_ratio * 100
+
+            if issue_per_kloc <= 2:
+                penalty = issue_per_kloc * 2
+            elif issue_per_kloc <= 10:
+                penalty = 4 + (issue_per_kloc - 2) * 3
+            else:
+                penalty = 28 + (issue_per_kloc - 10) * 1.5
+
+            penalty = min(penalty, 60)
+
+            health_score = max(5, base - penalty)
             health_score = round(min(100, health_score), 1)
 
         if health_score >= 80:
